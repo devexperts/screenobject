@@ -1,14 +1,14 @@
 # ScreenObject
 ---
 ScreenObject implements ScreenObject (PageObject) pattern in your tests. 
-It also automatically generates classes with screen's elements.
-ScreenObject is useful in User Interface testing of iOS, iPadOS and macOS. 
+It also automatically generates Screen classes of XCUIElements.
+ScreenObject is useful in User Interface testing of iOS, iPadOS, tvOS, and macOS. 
 This tool supports testing on the devices and in iOS/iPadOS Simulator. 
 It has been designed to be used with XCTest and written in Swift.
 
 ## Installation
 ScreenObject is easy to install with the [Swift Package Manager.](https://developer.apple.com/documentation/swift_packages) 
-Navigate to project settings and add a package on **Swift Packages** page. 
+Navigate to project settings and add a package on the **Swift Packages** page. 
 Copy-Paste a link to this repository in the **Choose Package Repository** window. 
 Continue configuring dependency as needed.
 
@@ -18,9 +18,9 @@ Continue configuring dependency as needed.
 
 ## ScreenObject concepts 
 1. Import `ScreenObject` anywhere you import `XCTest`.
-2. Define ScreenObject classes with elements and steps as a subclasses of `Screen`.
+2. Define ScreenObject classes with elements and steps as subclasses of `Screen`.
 3. Elements should be computed properties. 
-4. If you want to use steps in chain, steps functions shall return `self`.
+4. If you want to use steps chained together, steps functions shall return `self`.
 5. Use `Screen(of: app)` in your `XCTestCase` subclasses to access ScreenObjects' chaining.
 6. To navigate between different ScreenObjects use `on(NewScreen.self)` function.
 ```swift
