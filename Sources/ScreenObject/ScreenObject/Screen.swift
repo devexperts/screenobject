@@ -18,14 +18,13 @@ open class Screen {
         self.app = app
     }
 
-    public func inApp(_ app: XCUIApplication) -> Screen {
-        return Screen(of: app)
-    }
-
-    // swiftlint:disable force_cast
-    public func on<T: Screen>(_ screen: T.Type) -> T {
-        if self is T {
-            return self as! T
+    /// Returns the required ScreenObject of an app
+    /// - Parameters:
+    ///   - screen: A type of new ScreenObject. E.g. NewScreen.self
+    ///   - newApp: An optional app if chain should change target application
+    public func on<T: Screen>(_ screen: T.Type, of newApp: XCUIApplication? = nil) -> T {
+        if let newApp = newApp {
+            return screen.init(of: newApp)
         } else {
             return screen.init(of: app)
         }
