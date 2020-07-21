@@ -13,7 +13,6 @@ import XCTest
 @available(tvOS 9.1, *)
 public protocol XCUIElementAnyTypeQueryProvider {
     func descendants(matching type: XCUIElement.ElementType) -> XCUIElementQuery
-
 }
 
 @available(OSX 10.11, *)
@@ -36,4 +35,4 @@ extension XCUIElement: XCUIElementAnyTypeQueryProvider {}
 @available(tvOS 9.1, *)
 extension XCUIElementQuery: XCUIElementAnyTypeQueryProvider {}
 
-// 'XCUIApplication' conforms to a protocol 'XCUIElementAnyTypeQueryProvider' automatically
+// 'XCUIApplication' automatically conforms to 'XCUIElementAnyTypeQueryProvider' protocol

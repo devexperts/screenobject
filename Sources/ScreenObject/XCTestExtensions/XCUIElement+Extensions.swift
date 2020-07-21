@@ -12,7 +12,6 @@ import XCTest
 @available(iOS 9.0, *)
 @available(tvOS 9.1, *)
 public extension XCUIElement {
-
     // Types delete symbols into the element.
     func clearText() {
         XCTContext.runActivity(named: "Clear \(self) text") { _ in
@@ -39,7 +38,7 @@ public extension XCUIElement {
 
     /// Waits the specified amount of time for the element’s exists property to become false.
     ///
-    /// - Returns: false if the timeout expires and the element still exists.
+    /// - Returns: `false` if the timeout expires and the element still exists.
     func waitForDisappearance(timeout: TimeInterval = 3) -> Bool {
         return XCTContext.runActivity(named: "Waiting \(timeout)s for \(self) to disappear") { _ in
             let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),

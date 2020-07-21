@@ -12,9 +12,8 @@ import XCTest
 @available(iOS 9.0, *)
 @available(tvOS 9.1, *)
 public extension XCUIElementQuery {
-
     // The last element that matches a query
     var lastMatch: XCUIElement {
-        return element(boundBy: self.count - 1)
+        return element(boundBy: count - 1)
     }
 }

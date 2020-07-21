@@ -12,7 +12,6 @@ import XCTest
 @available(iOS 9.0, *)
 @available(tvOS 9.1, *)
 extension XCUIElementSnapshot {
-
     var query: String? {
         guard elementType != .application,
             !label.contains("scroll bar") else {
