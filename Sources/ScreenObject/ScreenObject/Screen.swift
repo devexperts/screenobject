@@ -29,4 +29,8 @@ open class Screen {
             return screen.init(of: app)
         }
     }
+
+    public func step<Result>(named: String, block: () throws -> Result) rethrows {
+        _ = try XCTContext.runActivity(named: named) { _ in try block() }
+    }
 }

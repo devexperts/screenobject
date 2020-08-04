@@ -44,6 +44,11 @@ class SettingsScreen: Screen {
     @discardableResult
     func logOut() -> Self {
         logOutButton.tap()
+        return self
+    }
+    
+    @discardableResult
+    func checkLogOurAlert() -> Self {
         XCTAssertEqual(alert.label, "You have successfully logged out")
         return self
     }
@@ -51,11 +56,19 @@ class SettingsScreen: Screen {
 
 class ExampleTestCase: XCTestCase {
     func testLogOut() {
-        Screen(of: XCUIApplication())
-            .on(MainScreen.self)
-            .openSettings()
-            .on(SettingsScreen.self)
-            .logOut()
+        given("User opens the app") { _ in
+            XCUIApplication().launch()
+        }
+        when("User goes to the settings and logs out") { _ in
+            on(MainScreen.self)
+                .openSettings()
+                .on(SettingsScreen.self)
+                .logOut()
+        }
+        then("User sees the alert") { _ in
+            on(SettingsScreen.self)
+                .checkLogOurAlert()
+        }
     }
 }
 ```
@@ -65,24 +78,37 @@ class ExampleTestCase: XCTestCase {
 public extension XCUIAllplication {
     // Returns a query for all descendants of any type.
     // Also available for XCUIElement and XCUIElementQuery.
-    var anyElements: XCUIElementQuery { ... }
+    var anyElements: XCUIElementQuery { }
 }
 public extension XCUIElement {
     // Types delete symbols into the element.
-    func clearText() { ... }
+    func clearText() { }
 
     // Sends a tap event at the element's coordinate. Useful if the regular .tap() fails.
-    func tapUnhittable() { ... }
+    func tapUnhittable() { }
 
     /// Waits the specified amount of time for the element’s exists property to become false.
     ///
     /// - Returns: false if the timeout expires and the element still exists.
-    func waitForDisappearance(timeout: TimeInterval = 3) -> Bool { ... }
+    func waitForDisappearance(timeout: TimeInterval = 3) -> Bool { }
 }
 
 public extension XCUIElementQuery {
     // The last element that matches a query
-    var lastMatch : XCUIElement { ... }
+    var lastMatch : XCUIElement { }
+}
+
+public extension XCTest {
+    // Functions for organising test cases code
+    func given(_ note: String, block: () throws -> Void) rethrows { }
+    func when(_ note: String, block: () throws -> Void) rethrows { }
+    func then(_ note: String, block: () throws -> Void) rethrows { }
+
+    // A more compact version of `XCTContext.runActivity<Result>(named name: String, block: (XCTActivity) throws -> Result) rethrows -> Result`
+    func step<Result>(named: String, block: () throws -> Result) rethrows { }
+    
+    // Adds note into the test log
+    func addNote(_ note: String) { }
 }
 ```
 

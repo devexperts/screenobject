@@ -48,11 +48,13 @@ public extension XCUIApplication {
 
             final class \(screenName): Screen {
                 // MARK: - Elements
+
             \(elements)
                 // MARK: - Steps
+
                 //@discardableResult
                 //func \("someAction".placeholder)() -> Self {
-                //    XCTContext.runActivity(named: "\("Do Some Action".placeholder)") { _ in
+                //    step(named: "\("Do Some Action".placeholder)") {
                 //
                 //    }
                 //    return self
