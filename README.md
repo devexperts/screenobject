@@ -40,15 +40,15 @@ class MainScreen: Screen {
 class SettingsScreen: Screen {
     var logOutButton: XCUIElement { app.buttons["Log Out"] }
     var alert: XCUIElement { app.alerts.element }
-    
+
     @discardableResult
     func logOut() -> Self {
         logOutButton.tap()
         return self
     }
-    
+
     @discardableResult
-    func checkLogOurAlert() -> Self {
+    func checkLogOutAlert() -> Self {
         XCTAssertEqual(alert.label, "You have successfully logged out")
         return self
     }
@@ -56,21 +56,22 @@ class SettingsScreen: Screen {
 
 class ExampleTestCase: XCTestCase {
     func testLogOut() {
-        given("User opens the app") { _ in
+        given("User opens the app") {
             XCUIApplication().launch()
         }
-        when("User goes to the settings and logs out") { _ in
+        when("User goes to the settings and logs out") {
             on(MainScreen.self)
                 .openSettings()
                 .on(SettingsScreen.self)
                 .logOut()
         }
-        then("User sees the alert") { _ in
+        then("User sees the alert") {
             on(SettingsScreen.self)
-                .checkLogOurAlert()
+                .checkLogOutAlert()
         }
     }
 }
+
 ```
 
 ## Handy extensions for XCTest 
@@ -80,6 +81,7 @@ public extension XCUIAllplication {
     // Also available for XCUIElement and XCUIElementQuery.
     var anyElements: XCUIElementQuery { }
 }
+
 public extension XCUIElement {
     // Types delete symbols into the element.
     func clearText() { }
@@ -104,7 +106,7 @@ public extension XCTest {
     func when(_ note: String, block: () throws -> Void) rethrows { }
     func then(_ note: String, block: () throws -> Void) rethrows { }
 
-    // A more compact version of `XCTContext.runActivity<Result>(named name: String, block: (XCTActivity) throws -> Result) rethrows -> Result`
+    // A more compact version of XCTContext.runActivity<Result>(named name: String, block: (XCTActivity) throws -> Result) rethrows -> Result
     func step<Result>(named: String, block: () throws -> Result) rethrows { }
     
     // Adds note into the test log
