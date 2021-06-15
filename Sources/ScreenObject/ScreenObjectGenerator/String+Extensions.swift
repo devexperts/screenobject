@@ -51,7 +51,7 @@ extension String {
                 if $1.isAllCapitals {
                     return $0 + first.uppercased() + $1.dropFirst().lowercased()
                 } else {
-                    return $0 + first.uppercased() + $1.dropFirst()
+                    return $0 + first.uppercased() + String($1.dropFirst())
                 }
             } else {
                 return $0

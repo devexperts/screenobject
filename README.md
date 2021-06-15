@@ -76,7 +76,7 @@ class ExampleTestCase: XCTestCase {
 
 ## Handy extensions for XCTest 
 ```swift
-public extension XCUIAllplication {
+public extension XCUIApplication {
     // Returns a query for all descendants of any type.
     // Also available for XCUIElement and XCUIElementQuery.
     var anyElements: XCUIElementQuery { }
