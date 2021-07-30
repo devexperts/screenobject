@@ -48,7 +48,7 @@ public extension XCUIElement {
             case .completed:
                 return true
             default:
-                return false
+                return !exists
             }
         }
     }
