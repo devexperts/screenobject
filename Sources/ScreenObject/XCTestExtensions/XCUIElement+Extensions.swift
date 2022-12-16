@@ -12,6 +12,11 @@ import XCTest
 @available(iOS 9.0, *)
 @available(tvOS 9.1, *)
 public extension XCUIElement {
+    // Returns the center's coordinate of the element's frame
+    var center: XCUICoordinate {
+        coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+    }
+ 
     // Types delete symbols into the element.
     func clearText() {
         XCTContext.runActivity(named: "Clear \(self) text") { _ in
@@ -31,7 +36,7 @@ public extension XCUIElement {
     // Sends a tap event at the element's coordinate. Useful if the regular .tap() fails.
     func tapUnhittable() {
         XCTContext.runActivity(named: "Tap \(self) by coordinate") { _ in
-            coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            center.tap()
         }
     }
     #endif
